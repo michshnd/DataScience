@@ -1,13 +1,13 @@
 ﻿Variable,Density change,revenue change with/without ,decision
 budget,no change in density,there was a slight change,drop
-popularity,no change in density,there was a big  change,drop
+popularity,no change in density,there was a big change,drop
 runtime,no change in density,there was a slight change,drop
 revenue,no change in density,were no changes,leave it
-keyword_cnt,no change in density,there was a slight change,leave it
+keyword_cnt,no change in density,there was a big change,drop
 release_year,were no changes,were no changes,drop
-sw_collection,were changes,after droping outliers remains only one value,leave it
 producers_cnt,were no changes,were no changes,drop
 countries_cnt,were no changes,after droping outliers remains only one value,leave it
+actor0_movies_cnt,no change in density,there was a slight change,drop
 actor0_movies_5y_cnt,were no changes,were no changes,drop
 actor1_movies_cnt,were no changes,after droping outliers there is significant change in revenue,leave it
 actor1_movies_5y_cnt,were no changes,were no changes,drop
@@ -35,11 +35,11 @@ depart_Crew_female,were changes,after droping outliers remains only one value,le
 depart_Custom_Mkup_female,were no changes,were no changes,drop
 depart_Directing_female,were changes,after droping outliers remains only one value,leave it
 depart_Editing_female,were changes,after droping outliers remains only one value,leave it
-depart_lightning_female,were changes,were no changes,leave it
 depart_Production_female,were no changes,were no changes,drop
 depart_Sound_female,were changes,after droping outliers remains only one value,leave it
 depart_Visual_Effects_female,were changes,after droping outliers remains only one value,leave it
 depart_Writing_female,were changes,after droping outliers remains only one value,leave it
+,,,
 ,,,
 ,,,
 ,,,
