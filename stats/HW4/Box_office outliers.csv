@@ -1,0 +1,46 @@
+﻿Variable,Density change,revenue change with/without ,decision
+budget,no change in density,there was a slight change,drop
+popularity,no change in density,there was a big change,drop
+runtime,no change in density,there was a slight change,drop
+revenue,no change in density,were no changes,leave it
+keyword_cnt,no change in density,there was a big change,drop
+release_year,were no changes,were no changes,drop
+producers_cnt,were no changes,were no changes,drop
+countries_cnt,were no changes,after droping outliers remains only one value,leave it
+actor0_movies_cnt,no change in density,there was a slight change,drop
+actor0_movies_5y_cnt,were no changes,were no changes,drop
+actor1_movies_cnt,were no changes,after droping outliers there is significant change in revenue,leave it
+actor1_movies_5y_cnt,were no changes,were no changes,drop
+actor2_movies_cnt,were no changes,were no changes,drop
+actor2_movies_5y_cnt,were no changes,were no changes,drop
+actor0_prev_revenue,were no changes,after droping outliers there is not significant change in the revneue,drop
+actor1_prev_revenue,were no changes,were no changes,drop
+actor2_prev_revenue,were no changes,were no changes,drop
+director_movies_cnt,were no changes,after droping outliers there is significant change in revenue,leave it
+director_movies_5y_cnt,were no changes,were no changes,drop
+depart_Art,were no changes,were no changes,drop
+depart_Camera,were no changes,were no changes,drop
+depart_Crew,were changes,after droping outliers there is significant change in revenue,leave it
+depart_Custom_Mkup,were no changes,were no changes,drop
+depart_Directing,were no changes,after droping outliers there is significant change in revenue,leave it
+depart_Editing,were no changes,were no changes,drop
+depart_Lighting,were changes,after droping outliers remains only one value,leave it
+depart_Production,were no changes,were no changes,drop
+depart_Sound,were no changes,were no changes,drop
+depart_Visual_Effects,were changes,after droping outliers remains only one value,leave it
+depart_Writing,were no changes,were no changes,drop
+depart_Art_female,were changes,after droping outliers remains only one value,leave it
+depart_Camera_female,were changes,after droping outliers remains only one value,leave it
+depart_Crew_female,were changes,after droping outliers remains only one value,leave it
+depart_Custom_Mkup_female,were no changes,were no changes,drop
+depart_Directing_female,were changes,after droping outliers remains only one value,leave it
+depart_Editing_female,were changes,after droping outliers remains only one value,leave it
+depart_Production_female,were no changes,were no changes,drop
+depart_Sound_female,were changes,after droping outliers remains only one value,leave it
+depart_Visual_Effects_female,were changes,after droping outliers remains only one value,leave it
+depart_Writing_female,were changes,after droping outliers remains only one value,leave it
+,,,
+,,,
+,,,
+,,,
+,,,
