@@ -1,0 +1,337 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Exploratory Data Analysis (EDA)</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+        <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+        <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+        <script src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
+        <script>
+        $(document).ready(function(){
+           $('.onetoone').hide();
+        });
+        $(function() {
+           $('.origimg').click(function(e) {
+             $('#popup_img').attr('src',$(this).attr('src'));
+             $('#myContainer').hide();
+             var pos = $(document).scrollTop();
+             $('#myContainer-popup').css({'clip':'auto', 'top':pos+20, 'left':250, 'width':'450px', 'height':'338px'});
+             //$('#myContainer').css({'top':pos+20,'left':250, 'width':'450px', 'height':'338px' ,'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+             $('#myContainer').css({'width':'450px', 'height':'338px' ,'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+             $('#myContainer').show();
+             $('#myContainer').css({'clip':'rect(1px, 450px, 338px, 0px)'});
+             $('#popup_img').css('visibility', 'visible');
+             //$('#myContainer-popup').css({'top':pos+20,'left':250, 'width':'450px', 'height':'338px' ,'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+             //alert("you clicked on the image:" +  $(this).attr('src'));
+            });
+           $('#myContainer').click(function(e) {
+             $('#myContainer').hide();
+           });
+           $('#myform2').submit(function(e) {
+             e.preventDefault();
+           });
+           $('#onetoone').on('click',function() {
+             console.log('onetone button - 1');
+             $('#onetoone').hide();
+             $('#aslist').css('visibility','visible')
+             $('#aslist').show();
+             // To show only individual rows:
+             $('.Row').hide();
+             $('.onetoone').show();
+             // then we iterate
+             var i = $('.Row').length;
+             // Then we iterate
+             var nxt = $('#idx').val();
+             if (nxt < i & nxt >0) {
+               $('.Row').hide();
+               $('.Row').eq(0).show();
+               $('.Row').eq(nxt).show();
+             } else {
+               $('#idx').val(1)
+             }
+             console.log('onetone button - 2');
+          });
+          $('#aslist').on('click',function() {
+            console.log('aslist button - 1');
+            $('#onetoone').show();
+            $('#aslist').hide();
+            $('.onetoone').hide();
+            $('.Row').show();
+            console.log('aslist button - 2');
+          });
+          $('#less').on('click',function(){
+            //console.log('less button - 1');
+            var i = $('.Row').length;
+            var nxt = parseInt($('#idx').val(),10) - 1;
+            if (nxt < i & nxt >0) {
+              $('#idx').val(nxt)
+              $('.Row').hide();
+              $('.Row').eq(0).show();
+              $('.Row').eq(nxt).show();
+            } else {
+              $('#idx').val(1)
+            }
+            //console.log('less button - 2');
+          });
+          $('#more').on('click',function(){
+            //console.log('more button - 1');
+            var i = $('.Row').length;
+            var nxt = parseInt($('#idx').val(),10) + 1;
+            if (nxt < i & nxt >0) {
+              $('#idx').val(nxt)
+              $('.Row').hide();
+              $('.Row').eq(0).show();
+              $('.Row').eq(nxt).show();
+            } else {
+              $('#idx').val(i)
+            }
+            //console.log('more button - 2');
+          });
+          $('#idx').on('change', function(){
+            //console.log('idx changed - 1');
+            var i = $('.Row').length;
+            var nxt = $('#idx').val();
+            if (nxt < i & nxt >0) {
+              $('#idx').val(nxt)
+              $('.Row').hide();
+              $('.Row').eq(0).show();
+              $('.Row').eq(nxt).show();
+            } else {
+              $('#idx').val(i)
+            }
+            console.log('idx changed - 2');
+          });
+        });
+        </script>
+        <style type='text/css'>
+        .Table
+        {
+           display: table;
+        }
+        .Title
+        {
+          display: table-caption;
+          text-align: center;
+          font-weight: bold;
+          font-size: larger;
+        }
+        .Row
+        {
+          display: table-row;
+        }
+        .Cell
+        {
+          display: table-cell;
+          border: solid;
+          border-width: thin;
+          padding-left: 5px;
+          padding-right: 5px;
+          vertical-align: top;
+          font-family: "Times New Roman", Times, serif;
+        }
+        .origimg {
+          width: 200px;
+          height:120px;
+        }
+        .ui-btn {
+          width: 10%;
+        }
+        .ui-input-text {
+          width: 90%;
+        }
+        </style>
+        </head>
+        <body>
+        <div id='pageone' data-role='main' class='ui-content'>
+            <p><p><h1> Exploratory Data Analysis (EDA) </h1>
+            <form id="onetoone">
+                <input type='button' id='onetoone' value='Show as Cards'>
+            </form>
+            <form id="aslist" style='visibility:hidden;'>
+                <input type='button' id='aslist' value='Show as List'>
+            </form>
+            <p>
+        <p><p>
+            <div class='Table'>
+            <div class='Row'>
+            <div class='Cell Title'> Variable </div>
+            <div class='Cell Title'> Distribution </div>
+            <div class='Cell Title'> Descriptive <br> Statistics</div>
+            <div class='Cell Title'> Outliers </div>
+            
+            </div>
+        <div class='Row'><div class='Cell Title'><b> DESTINATION_AIRPORT_NAME </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> DESTINATION_CITY </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> DESTINATION_STATE </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> DESTINATION_LAT </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    36.60 	 <u>StdDev</u>:     6.10 <br><u>Median</u>:    37.40 	
+                    <u>IQR</u>:    32.90-   40.80<br><u>Min</u>: 0.0 	 <u>Max</u>: 71.28545 	 <p><u> Kurtosis</u>:    -0.20 	 <br><u> Skweness</u>:     2.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/DESTINATION_LAT_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DESTINATION_LAT_2.png"></img> <br> Number of outliers: 39943 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DESTINATION_LONG </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:   -95.40 	 <u>StdDev</u>:    18.40 <br><u>Median</u>:   -90.30 	
+                    <u>IQR</u>:  -112.00-  -81.70<br><u>Min</u>: -176.64603 	 <u>Max</u>: 0.0 	 <p><u> Kurtosis</u>:    -0.80 	 <br><u> Skweness</u>:     1.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/DESTINATION_LONG_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DESTINATION_LONG_2.png"></img> <br> Number of outliers: 99666 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> YEAR </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 5332914/5332914 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>:<br> 2015: 5,332,914.00 (  100.00%) <br>  </div>
+                    <div class='Cell'><img class="origimg" src="img/YEAR_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" src="img/YEAR_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> MONTH </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     6.20 	 <u>StdDev</u>:     3.40 <br><u>Median</u>:     6.00 	
+                    <u>IQR</u>:     3.00-    9.00<br><u>Min</u>: 1 	 <u>Max</u>: 12 	 <p><u> Kurtosis</u>:     0.20 	 <br><u> Skweness</u>:    -1.00 </div>
+                    <div class='Cell'><img class="origimg" src="img/MONTH_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/MONTH_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    15.70 	 <u>StdDev</u>:     8.80 <br><u>Median</u>:    16.00 	
+                    <u>IQR</u>:     8.00-   23.00<br><u>Min</u>: 1 	 <u>Max</u>: 31 	 <p><u> Kurtosis</u>:     0.00 	 <br><u> Skweness</u>:    -1.20 </div>
+                    <div class='Cell'><img class="origimg" src="img/DAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DAY_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DAY_OF_WEEK </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     3.90 	 <u>StdDev</u>:     2.00 <br><u>Median</u>:     4.00 	
+                    <u>IQR</u>:     2.00-    6.00<br><u>Min</u>: 1 	 <u>Max</u>: 7 	 <p><u> Kurtosis</u>:     0.10 	 <br><u> Skweness</u>:    -1.20 </div>
+                    <div class='Cell'><img class="origimg" src="img/DAY_OF_WEEK_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DAY_OF_WEEK_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> FLIGHT_NUMBER </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 2,178.40 	 <u>StdDev</u>: 1,760.50 <br><u>Median</u>: 1,690.00 	
+                    <u>IQR</u>:   731.00-3,252.00<br><u>Min</u>: 1 	 <u>Max</u>: 9855 	 <p><u> Kurtosis</u>:     0.80 	 <br><u> Skweness</u>:    -0.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/FLIGHT_NUMBER_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/FLIGHT_NUMBER_2.png"></img> <br> Number of outliers: 24850 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> TAIL_NUMBER </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> ORIGIN_AIRPORT </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> DESTINATION_AIRPORT </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> SCHEDULED_DEPARTURE </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 1,330.10 	 <u>StdDev</u>:   484.30 <br><u>Median</u>: 1,325.00 	
+                    <u>IQR</u>:   917.00-1,730.00<br><u>Min</u>: 1 	 <u>Max</u>: 2359 	 <p><u> Kurtosis</u>:     0.10 	 <br><u> Skweness</u>:    -1.00 </div>
+                    <div class='Cell'><img class="origimg" src="img/SCHEDULED_DEPARTURE_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/SCHEDULED_DEPARTURE_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DEPARTURE_TIME </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 1,315.10 	 <u>StdDev</u>:   520.70 <br><u>Median</u>: 1,323.00 	
+                    <u>IQR</u>:   908.00-1,737.00<br><u>Min</u>: 0 	 <u>Max</u>: 2400 	 <p><u> Kurtosis</u>:    -0.10 	 <br><u> Skweness</u>:    -0.70 </div>
+                    <div class='Cell'><img class="origimg" src="img/DEPARTURE_TIME_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DEPARTURE_TIME_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DEPARTURE_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     9.60 	 <u>StdDev</u>:    37.30 <br><u>Median</u>:    -1.00 	
+                    <u>IQR</u>:    -5.00-    7.00<br><u>Min</u>: -82 	 <u>Max</u>: 1988 	 <p><u> Kurtosis</u>:     7.50 	 <br><u> Skweness</u>:   119.80 </div>
+                    <div class='Cell'><img class="origimg" src="img/DEPARTURE_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DEPARTURE_DELAY_2.png"></img> <br> Number of outliers: 696555 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> TAXI_OUT </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    15.80 	 <u>StdDev</u>:     9.10 <br><u>Median</u>:    14.00 	
+                    <u>IQR</u>:    11.00-   19.00<br><u>Min</u>: 0 	 <u>Max</u>: 225 	 <p><u> Kurtosis</u>:     3.30 	 <br><u> Skweness</u>:    22.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/TAXI_OUT_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/TAXI_OUT_2.png"></img> <br> Number of outliers: 264049 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> WHEELS_OFF </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 1,335.90 	 <u>StdDev</u>:   523.90 <br><u>Median</u>: 1,335.00 	
+                    <u>IQR</u>:   923.00-1,751.00<br><u>Min</u>: 0 	 <u>Max</u>: 2400 	 <p><u> Kurtosis</u>:    -0.20 	 <br><u> Skweness</u>:    -0.60 </div>
+                    <div class='Cell'><img class="origimg" src="img/WHEELS_OFF_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/WHEELS_OFF_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> SCHEDULED_TIME </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:   141.80 	 <u>StdDev</u>:    75.30 <br><u>Median</u>:   123.00 	
+                    <u>IQR</u>:    85.00-  174.00<br><u>Min</u>: 0 	 <u>Max</u>: 718 	 <p><u> Kurtosis</u>:     1.30 	 <br><u> Skweness</u>:     2.00 </div>
+                    <div class='Cell'><img class="origimg" src="img/SCHEDULED_TIME_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/SCHEDULED_TIME_2.png"></img> <br> Number of outliers: 268674 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> ELAPSED_TIME </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:   134.60 	 <u>StdDev</u>:    75.90 <br><u>Median</u>:   117.00 	
+                    <u>IQR</u>:    81.00-  167.00<br><u>Min</u>: 0 	 <u>Max</u>: 766 	 <p><u> Kurtosis</u>:     1.20 	 <br><u> Skweness</u>:     1.90 </div>
+                    <div class='Cell'><img class="origimg" src="img/ELAPSED_TIME_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/ELAPSED_TIME_2.png"></img> <br> Number of outliers: 270891 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> AIR_TIME </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:   111.50 	 <u>StdDev</u>:    73.30 <br><u>Median</u>:    93.00 	
+                    <u>IQR</u>:    59.00-  143.00<br><u>Min</u>: 0 	 <u>Max</u>: 690 	 <p><u> Kurtosis</u>:     1.30 	 <br><u> Skweness</u>:     2.00 </div>
+                    <div class='Cell'><img class="origimg" src="img/AIR_TIME_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/AIR_TIME_2.png"></img> <br> Number of outliers: 275541 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DISTANCE </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:   822.90 	 <u>StdDev</u>:   607.80 <br><u>Median</u>:   649.00 	
+                    <u>IQR</u>:   373.00-1,065.00<br><u>Min</u>: 21 	 <u>Max</u>: 4983 	 <p><u> Kurtosis</u>:     1.40 	 <br><u> Skweness</u>:     2.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/DISTANCE_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DISTANCE_2.png"></img> <br> Number of outliers: 320228 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> WHEELS_ON </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 1,446.20 	 <u>StdDev</u>:   552.80 <br><u>Median</u>: 1,459.00 	
+                    <u>IQR</u>: 1,041.00-1,908.00<br><u>Min</u>: 0 	 <u>Max</u>: 2400 	 <p><u> Kurtosis</u>:    -0.50 	 <br><u> Skweness</u>:    -0.20 </div>
+                    <div class='Cell'><img class="origimg" src="img/WHEELS_ON_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/WHEELS_ON_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> TAXI_IN </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     7.30 	 <u>StdDev</u>:     5.70 <br><u>Median</u>:     6.00 	
+                    <u>IQR</u>:     4.00-    9.00<br><u>Min</u>: 0 	 <u>Max</u>: 248 	 <p><u> Kurtosis</u>:     5.10 	 <br><u> Skweness</u>:    58.50 </div>
+                    <div class='Cell'><img class="origimg" src="img/TAXI_IN_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/TAXI_IN_2.png"></img> <br> Number of outliers: 259931 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> SCHEDULED_ARRIVAL </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 1,493.70 	 <u>StdDev</u>:   507.90 <br><u>Median</u>: 1,520.00 	
+                    <u>IQR</u>: 1,110.00-1,919.00<br><u>Min</u>: 1 	 <u>Max</u>: 2400 	 <p><u> Kurtosis</u>:    -0.30 	 <br><u> Skweness</u>:    -0.50 </div>
+                    <div class='Cell'><img class="origimg" src="img/SCHEDULED_ARRIVAL_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/SCHEDULED_ARRIVAL_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> ARRIVAL_TIME </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>: 1,451.00 	 <u>StdDev</u>:   556.90 <br><u>Median</u>: 1,503.00 	
+                    <u>IQR</u>: 1,045.00-1,913.00<br><u>Min</u>: 0 	 <u>Max</u>: 2400 	 <p><u> Kurtosis</u>:    -0.50 	 <br><u> Skweness</u>:    -0.20 </div>
+                    <div class='Cell'><img class="origimg" src="img/ARRIVAL_TIME_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/ARRIVAL_TIME_2.png"></img> <br> Number of outliers: 0 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> ARRIVAL_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     4.80 	 <u>StdDev</u>:    39.40 <br><u>Median</u>:    -4.00 	
+                    <u>IQR</u>:   -13.00-    8.00<br><u>Min</u>: -87 	 <u>Max</u>: 1971 	 <p><u> Kurtosis</u>:     6.40 	 <br><u> Skweness</u>:    95.90 </div>
+                    <div class='Cell'><img class="origimg" src="img/ARRIVAL_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/ARRIVAL_DELAY_2.png"></img> <br> Number of outliers: 485923 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DIVERTED </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     0.00 	 <u>StdDev</u>:     0.10 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 1 	 <p><u> Kurtosis</u>:    19.20 	 <br><u> Skweness</u>:   366.50 </div>
+                    <div class='Cell'><img class="origimg" src="img/DIVERTED_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/DIVERTED_2.png"></img> <br> Number of outliers: 14354 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> CANCELLED </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     0.00 	 <u>StdDev</u>:     0.10 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 1 	 <p><u> Kurtosis</u>:     7.60 	 <br><u> Skweness</u>:    56.00 </div>
+                    <div class='Cell'><img class="origimg" src="img/CANCELLED_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/CANCELLED_2.png"></img> <br> Number of outliers: 87430 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> CANCELLATION_REASON </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> AIR_SYSTEM_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     2.50 	 <u>StdDev</u>:    13.30 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 1134 	 <p><u> Kurtosis</u>:    13.00 	 <br><u> Skweness</u>:   320.80 </div>
+                    <div class='Cell'><img class="origimg" src="img/AIR_SYSTEM_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/AIR_SYSTEM_DELAY_2.png"></img> <br> Number of outliers: 532628 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> SECURITY_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     0.00 	 <u>StdDev</u>:     0.90 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 573 	 <p><u> Kurtosis</u>:   166.00 	 <br><u> Skweness</u>: 53,238.00 </div>
+                    <div class='Cell'><img class="origimg" src="img/SECURITY_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/SECURITY_DELAY_2.png"></img> <br> Number of outliers: 3340 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> AIRLINE_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     3.60 	 <u>StdDev</u>:    22.00 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 1971 	 <p><u> Kurtosis</u>:    18.30 	 <br><u> Skweness</u>:   622.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/AIRLINE_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/AIRLINE_DELAY_2.png"></img> <br> Number of outliers: 538573 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> LATE_AIRCRAFT_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     4.50 	 <u>StdDev</u>:    20.90 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 1331 	 <p><u> Kurtosis</u>:     9.00 	 <br><u> Skweness</u>:   146.40 </div>
+                    <div class='Cell'><img class="origimg" src="img/LATE_AIRCRAFT_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/LATE_AIRCRAFT_DELAY_2.png"></img> <br> Number of outliers: 529110 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> WEATHER_DELAY </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:     0.60 	 <u>StdDev</u>:     9.00 <br><u>Median</u>:     0.00 	
+                    <u>IQR</u>:     0.00-    0.00<br><u>Min</u>: 0 	 <u>Max</u>: 1211 	 <p><u> Kurtosis</u>:    37.00 	 <br><u> Skweness</u>: 2,317.10 </div>
+                    <div class='Cell'><img class="origimg" src="img/WEATHER_DELAY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/WEATHER_DELAY_2.png"></img> <br> Number of outliers: 62610 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> IATA_CODE </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> AIRLINE </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> ORIGIN_AIRPORT_NAME </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> ORIGIN_CITY </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> ORIGIN_STATE </b></div><div class='Cell Title'> Data type undefined </div></div><div class='Row'><div class='Cell Title'><b> COUNTRY </b></div><div class='Cell'> <u>Data type</u>: Category <p> <u>Data length</u>: 5332914/5332914 <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Categories</u>:<br> USA: 5,332,914.00 (  100.00%) <br>  </div>
+                    <div class='Cell'><img class="origimg" src="img/COUNTRY_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" src="img/COUNTRY_2.png"></img></div>
+                    </div><div class='Row'><div class='Cell Title'><b> ORIGIN_LAT </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:    36.60 	 <u>StdDev</u>:     6.10 <br><u>Median</u>:    37.40 	
+                    <u>IQR</u>:    32.90-   40.80<br><u>Min</u>: 0.0 	 <u>Max</u>: 71.28545 	 <p><u> Kurtosis</u>:    -0.20 	 <br><u> Skweness</u>:     2.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/ORIGIN_LAT_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/ORIGIN_LAT_2.png"></img> <br> Number of outliers: 39938 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> ORIGIN_LONG </b></div><div class='Cell'> <u>Data type</u>: Continuous <p> <u>Data length</u>: 5332914/5332914 (  100.00%%) <br>
+                    <u>Missing</u>: 0 (    0.00%%)<p> <u>Mean</u>:   -95.40 	 <u>StdDev</u>:    18.40 <br><u>Median</u>:   -90.30 	
+                    <u>IQR</u>:  -112.00-  -81.70<br><u>Min</u>: -176.64603 	 <u>Max</u>: 0.0 	 <p><u> Kurtosis</u>:    -0.80 	 <br><u> Skweness</u>:     1.30 </div>
+                    <div class='Cell'><img class="origimg" src="img/ORIGIN_LONG_1.png"></img></div>
+                    <div class='Cell'><img class="origimg" class="origimg" src="img/ORIGIN_LONG_2.png"></img> <br> Number of outliers: 99666 </div>
+                    </div><div class='Row'><div class='Cell Title'><b> DATE </b></div><div class='Cell'> Date: <br> Min: 2015-01-01 00:00:00 <br> Max: 2015-12-31 00:00:00 <br> Unique dates: 334 </div></div>
+                <div data-role='popup' id='myContainer' style='display: none;'>
+                    <img id='popup_img' src='' />
+                </div>
+
+                </div>
+                </div>
+                </div>
+                <p>
+                <div class='onetoone'>
+                    <form id='myform2' style='display:block;'>
+                      <div id='navigator' style="display: block; width='40%';">
+                          <div id='less' style="float:left;"><input class='ui-btn' type='button' id='less1' value=' << ' style='width: 10%;'></div>
+                          <div id='center' style="float:left;"><input id='idx' name='idx' value='1' style='text-align:center;'></input></div>
+                          <div id='more' style="float:left;"><input class='ui-btn' type='button' id='more1' value=' >> ' style='width: 10%;'></div>
+                      </div>
+                    </form>
+                </div>
+                <p>
+                </body></html>
+        
